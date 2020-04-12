@@ -1,0 +1,30 @@
+<html>
+    <body onload="setPosition()">
+       <canvas id="logo" style="outline:black 3px solid" height="600" width="600"></canvas>
+       <script src="logo.js"></script>
+       <script>
+           const logo = new Logo("logo");
+           
+           const setPosition = () => {
+                const lbl = document.getElementById("position");
+                const position = logo.turtle.position;
+                lbl.textContent = `You are at ${Math.round(position.x)},${Math.round(position.y)} facing ${Math.round(logo.turtle.facing)}`
+           }
+
+           const run = () => {               
+               logo.parse(document.getElementById("text").value.split("\n"))
+               setPosition();
+           }
+
+       </script>
+       <br/>
+       <br/>
+       <label id="position"></label>
+       <br/>
+       <br/>
+       <form onsubmit="return run()">
+           <textarea rows="10" cols="100" id="text"></textarea>
+           <input type="button" onclick="run()" value="Run"></input>
+        </form>
+    </body>
+</html>
