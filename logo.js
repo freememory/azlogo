@@ -28,17 +28,24 @@ const radians = (degrees) => {
 }
 
 class Turtle {
-    constructor(canvasContext, color) {
+    constructor(canvasContext) {
         this.ctx = canvasContext;
-        this.color = color;
         this.mode = "down";
-        this.init();
+        this.color = "black";
     }
 
     init = () => {
-        this.ctx.strokeStyle = this.color;
         this.facing = 90;
-        this.position = {x: 0, y: 0};
+        this.position = {x: 0, y: 0};        
+        this.setColor();
+    }
+
+    setColor = (color = undefined) => {
+        this.color = color || this.color;
+        this.ctx.beginPath();
+        const lastPos = cartesianToCanvasPoint(this.position)
+        this.ctx.moveTo(lastPos.x, lastPos.y);
+        this.ctx.strokeStyle = this.color;
     }
 
     rotate = (amount) => {        
@@ -83,9 +90,16 @@ class Logo {
         this.canvasId = canvasId;
         this.canvas = document.getElementById(this.canvasId);   
         this.ctx = this.canvas.getContext('2d'); 
+        this.turtle = new Turtle(this.ctx);
+        this.init();
+    }
+
+    init = () => {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.drawAxes();
-        this.turtle = new Turtle(this.ctx, 'black');
         this.ctx.beginPath();
+        this.turtle.color = 'black';
+        this.turtle.init();
         this.ctx.moveTo(this.canvas.width / 2, this.canvas.height / 2);
     }
 
@@ -111,7 +125,7 @@ class Logo {
         this.ctx.fillText("180", 0, this.canvas.height / 2);
     }
 
-    draw = ({x,y}) => {
+    draw = ({x,y}) => {   
         if(this.turtle.mode === 'down')
             this.ctx.lineTo(x, y);
         else
@@ -126,7 +140,6 @@ class Logo {
             let currentLine = lines[line].toLowerCase();
             let split = currentLine.split(" ");
             let command = split.shift();
-            
             switch(command)
             {
                 case "fd":
@@ -158,7 +171,13 @@ class Logo {
                     break;
                 case "dn":
                 case "down":
-                    this.turtle.mode = 'down';                                                            
+                    this.turtle.mode = 'down';     
+                    break;                                                       
+                case "color":
+                    this.turtle.setColor(...split);
+                    break;
+                default:
+                    console.error(`Unknown command ${command}`);
             }
             line++;
         }

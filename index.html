@@ -9,12 +9,17 @@
                 const lbl = document.getElementById("position");
                 const position = logo.turtle.position;
                 lbl.textContent = `You are at ${Math.round(position.x)},${Math.round(position.y)} facing ${Math.round(logo.turtle.facing)}`
-           }
+           };
 
            const run = () => {               
                logo.parse(document.getElementById("text").value.split("\n"))
                setPosition();
-           }
+           };
+
+           const clearCanvas = () => {
+               logo.init();
+               setPosition();
+           };
 
        </script>
        <br/>
@@ -25,6 +30,7 @@
        <form onsubmit="return run()">
            <textarea rows="10" cols="100" id="text"></textarea>
            <input type="button" onclick="run()" value="Run"></input>
+           <input type="button" onclick="clearCanvas()" value="Clear"></input>
         </form>
     </body>
 </html>
