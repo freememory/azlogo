@@ -90,16 +90,25 @@ class Logo {
     }
 
     drawAxes = () => {
+        // Y axis
         this.ctx.beginPath();
         this.ctx.strokeStyle = 'green';
         this.ctx.moveTo(this.canvas.width / 2, 0);
         this.ctx.lineTo(this.canvas.width / 2, this.canvas.height);
         this.ctx.stroke();
+
+        // X axis
         this.ctx.beginPath();
         this.ctx.moveTo(0, this.canvas.height / 2);
         this.ctx.strokeStyle = 'red';
         this.ctx.lineTo(this.canvas.width, this.canvas.height / 2);
         this.ctx.stroke();
+
+        // Add the text
+        this.ctx.fillText("90", this.canvas.width / 2, 12);
+        this.ctx.fillText("0 (360)", this.canvas.width - 30, this.canvas.height / 2);
+        this.ctx.fillText("270", this.canvas.width / 2, this.canvas.height - 8);
+        this.ctx.fillText("180", 0, this.canvas.height / 2);
     }
 
     draw = ({x,y}) => {
