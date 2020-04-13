@@ -1,5 +1,16 @@
 "use strict";
 
+/**
+ * This software is not copyrighted. It was developed and given freely by freememory on GitHub. Instead of
+ * a copyright notice he offers the following blessing:
+ * 
+ * May your life be filled with wonder.
+ * May you experience the joy of knowledge.
+ * May your curiosity be ever unquenched.
+ * 
+ * 13Apr2020, during COVID19 quarantine
+ */
+
 const canvas = document.getElementById('logo');
 
 const cartesianToCanvasPoint = ({x,y}) => {
