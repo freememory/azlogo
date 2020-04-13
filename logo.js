@@ -97,7 +97,7 @@ class Turtle {
             el.style.position = 'absolute';
             el.style.left = pos.x - 9 + 'px';
             el.style.top = pos.y - 10 + 'px';
-            el.style.transform = `rotate(${this.facing}deg)`;
+            el.style.transform = `rotate(${-this.facing}deg)`;
         }
     }
 }
