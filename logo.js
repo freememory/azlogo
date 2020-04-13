@@ -60,6 +60,9 @@ class Turtle {
     }
 
     rotate = (amount) => {        
+        if(isNaN(amount))
+            return;
+
         let facingUpdate = this.facing + (amount % 360);
         if(facingUpdate < 0)
             facingUpdate += 360;
@@ -79,6 +82,9 @@ class Turtle {
     }
 
     move = (amount) => {
+        if(isNaN(amount))
+            return;
+
         const newX = this.position.x + 
             (amount * Math.cos(radians(this.facing)));
         const newY = this.position.y + 
@@ -94,6 +100,14 @@ class Turtle {
     back = (amount) => {
         return this.move(-amount);
     }    
+
+    setPos = (x,y) => {
+        const newX = !isNaN(x) ? x : this.position.x,
+            newY = !isNaN(y) ? y : this.position.y;
+        
+        this.position = {x: newX, y: newY};
+        this.setColor();
+    }
 
     render = () => {
         const el = document.getElementById('turtle');
@@ -211,6 +225,12 @@ class Logo {
                     break;                                                       
                 case "color":
                     this.turtle.setColor(...split);
+                    break;
+                case "home":
+                    this.turtle.setPos(0,0)
+                    break;
+                case "setpos":
+                    this.turtle.setPos(...split.map(x => parseInt(x)));                    
                     break;
                 default:
                     console.error(`Unknown command ${command}`);
