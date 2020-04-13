@@ -9,6 +9,7 @@
                 const lbl = document.getElementById("position");
                 const position = logo.turtle.position;
                 lbl.textContent = `You are at ${Math.round(position.x)},${Math.round(position.y)} facing ${Math.round(logo.turtle.facing)}`
+                logo.turtle.render();
            };
 
            const run = () => {               
@@ -24,6 +25,7 @@
        </script>
        <br/>
        <br/>
+       <img src="turtle.png" id="turtle"/>
        <label id="position"></label>
        <br/>
        <br/>

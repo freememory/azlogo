@@ -83,6 +83,23 @@ class Turtle {
     back = (amount) => {
         return this.move(-amount);
     }    
+
+    render = () => {
+        const el = document.getElementById('turtle');
+        const pos = cartesianToCanvasPoint(this.position);
+
+        el.style.width = '32px';
+
+        if(pos.x > canvas.width || pos.x < 0 || pos.y > canvas.height || pos.y < 0)
+            el.style = 'none';
+        else 
+        {
+            el.style.position = 'absolute';
+            el.style.left = pos.x - 9 + 'px';
+            el.style.top = pos.y - 10 + 'px';
+            el.style.transform = `rotate(${this.facing}deg)`;
+        }
+    }
 }
 
 class Logo {
