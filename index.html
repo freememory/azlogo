@@ -1,6 +1,26 @@
 <html>
     <body onload="setPosition()">
-       <canvas id="logo" style="outline:black 3px solid" height="600" width="600"></canvas>
+       <canvas id="logo" style="outline:black 3px solid;display:inline-block" height="600" width="600"></canvas>
+       <div style="outline: darkgray 3px dashed;display:inline-block;width:400px;height:450px;vertical-align:top">
+            <h4>Commands</h4>
+            <em>All commands must be entered on their own lines</em>
+            <ul>
+                <li><strong>fd ##</strong>: example, <code>fd 50</code>, moves forward and draws a line by ## (50) pixels</li>
+                <li><strong>bk ##</strong>: example, <code>bk 50</code>, moves backward and draws a line by ## (50) pixels</li>
+                <li><strong>rt ##</strong>: example, <code>rt 90</code>, turns right ## (90) degrees</li>
+                <li><strong>lt ##</strong>: example, <code>lt 90</code>, turns left ## (90) degrees</li>
+                <li><strong>up</strong>: lifts pen up. All fd/bk commands will not draw a line.</li>
+                <li><strong>down</strong>: puts pen down. All fd/bk commands will draw a line.</li>
+                <li><strong>repeat ## / end</strong>Everything between repeat and end will be repeated ## times. E.g.<br/>
+                    <code>repeat 360<br/>
+                    fd 1<br/>
+                    rt 1<br/>
+                    end<br/>
+                    </code>
+                    Draws a circle.</li>
+                <li><strong>color XXXXXX</strong>: example, <code>color blue</code> will draw lines in the specified color</li>                    
+            </ul>
+       </div>
        <script src="logo.js"></script>
        <script>
            const logo = new Logo("logo");
@@ -25,14 +45,12 @@
        </script>
        <br/>
        <br/>
-       <img src="turtle.png" id="turtle"/>
-       <label id="position"></label>
-       <br/>
-       <br/>
        <form onsubmit="return run()">
            <textarea rows="10" cols="100" id="text"></textarea>
            <input type="button" onclick="run()" value="Run"></input>
            <input type="button" onclick="clearCanvas()" value="Clear"></input>
         </form>
+        <img src="turtle.png" id="turtle"/>
+        <label id="position"></label>
     </body>
 </html>
