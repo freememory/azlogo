@@ -37,6 +37,10 @@
                setPosition();
            };
 
+           const saveImage = () => {
+                logo.saveAsImage();
+           }
+
            const clearCanvas = () => {
                logo.init();
                setPosition();
@@ -49,6 +53,7 @@
            <textarea rows="10" cols="100" id="text"></textarea>
            <input type="button" onclick="run()" value="Run"></input>
            <input type="button" onclick="clearCanvas()" value="Clear"></input>
+           <input type="button" onclick="saveImage()" value="Save"></input>
         </form>
         <img src="turtle.png" id="turtle"/>
         <label id="position"></label>

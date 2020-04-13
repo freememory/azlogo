@@ -18,13 +18,13 @@ const cartesianToCanvasPoint = ({x,y}) => {
     const midHeight = canvas.height / 2;
     /*
     In order to understand this, picture the following:
-    0                      400                       800
+    0                      400                       800 (canvas coords)
     -------------------------------------------------->
     |                       |
     |                       |
     |                       |
     |                       |
-    |------------------------------------------------->400
+    |------------------------------------------------->400 (cartesian coords)
     |                       |
     |                       |   
     |                       |
@@ -161,6 +161,14 @@ class Logo {
         
         if(this.turtle.mode === 'down')
             this.ctx.stroke();
+    }
+
+    saveAsImage = () => {
+        const link = document.createElement('a');
+        link.download = `azlogo${new Date().toISOString()}.png`;
+        link.href = this.canvas.toDataURL();
+        link.click();
+        link.parentNode.removeChild(link);
     }
 
     parse = (lines, line = 0) => {        
